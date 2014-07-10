@@ -1,0 +1,37 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Customize to your needs...
+
+# Colors; no need to autoload zsh colors
+# autoload -U colors && colors
+if [ -f ~/.bash/display ]; then
+    . ~/.bash/display
+fi
+
+# prompt using our defined colors
+PROMPT="%{$BASE02BG%}%{$CYAN%}%n%{$RESET%}%{$BASE02BG%}@%{$VIOLET%}%m%{$RESET%}%{$BASE02BG%}: %{$BLUE%}%~%E%{$RESET%}
+%(!.%{$RED%}#.%{$ORANGE%}\$)%{$RESET%} "
+
+# Alias definitions directory. Source all the files there
+if [ -d ~/.sourced ]; then
+    for F in ~/.sourced/*; do . $F; done
+fi
+
+# ls and path completion colors
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+# switch off all annoying -i flags
+alias cp='nocorrect cp'
+alias ln='nocorrect ln'
+alias mv='nocorrect mv'
+alias rm='nocorrect rm'
