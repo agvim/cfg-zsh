@@ -19,8 +19,8 @@ if [ -f ~/.bash/display ]; then
 fi
 
 # prompt using our defined colors
-PROMPT="%{$BASE02BG%}%{$CYAN%}%n%{$RESET%}%{$BASE02BG%}@%{$VIOLET%}%m%{$RESET%}%{$BASE02BG%}: %{$BLUE%}%~%E%{$RESET%}
-%(!.%{$RED%}#.%{$ORANGE%}\$)%{$RESET%} "
+PROMPT="%{$BASE02BG%}%(?.%{$GREEN%}✔.%{$RED%}✘) %{$CYAN%}%n%{$RESET%}%{$BASE02BG%}@%{$VIOLET%}%m%{$RESET%}%{$BASE02BG%}: %{$BLUE%}%~%E%{$RESET%}
+%{$RESET%}%(!.%{$RED%}#.%{$ORANGE%}\$)%{$RESET%} "
 
 # Alias definitions directory. Source all the files there
 if [ -d ~/.sourced ]; then
