@@ -18,9 +18,41 @@ if [ -f ~/.bash/display ]; then
     . ~/.bash/display
 fi
 
+# use variable expansion in prompt
+setopt prompt_subst
+
 # prompt using our defined colors
-PROMPT="%{$BASE02BG%}%(?.%{$GREEN%}✔.%{$RED%}✘) %{$CYAN%}%n%{$RESET%}%{$BASE02BG%}@%{$VIOLET%}%m%{$RESET%}%{$BASE02BG%}: %{$BLUE%}%~%E%{$RESET%}
-%{$RESET%}%(!.%{$RED%}#.%{$ORANGE%}\$)%{$RESET%} "
+# <last command status> <username>@<host>: <cwd>
+# $
+PROMPT='%{$BASE02BG%}%(?.%{$GREEN%}✔.%{$RED%}✘)${vi_mode}%{$BASE02BG%} %{$CYAN%}%n%{$RESET$BASE02BG%}@%{$VIOLET%}%m%{$RESET$BASE02BG%}: %{$BLUE%}%~%E%{$RESET%}
+%(!.%{$RED%}#.%{$ORANGE%}\$)%{$RESET%} '
+# prepending a space since then the previous background color is preserved
+vi_ins_mode=" %{$YELLOWBG$BASE3$BOLD%} INSERT %{$RESET%}"
+vi_cmd_mode=" %{$BASE1BG$BASE3$BOLD%} NORMAL %{$RESET%}"
+# vim mode is cleaned up when issuing a command
+# and a redraw is forced so it is only shown in the latest prompt
+zle-line-finish() {
+    vi_mode=""
+    zle reset-prompt
+}
+# by default we are in insert mode
+precmd() {
+    vi_mode=$vi_ins_mode
+}
+# update status display when switching mode
+zle-keymap-select() {
+    vi_mode=${${KEYMAP/vicmd/${vi_cmd_mode}}/(main|viins)/${vi_ins_mode}}
+    zle reset-prompt
+}
+# fix for when ctrl+c is issued
+function TRAPINT() {
+    zle-line-finish
+    precmd
+    return $(( 128 + $1 ))
+}
+zle -N zle-keymap-select
+# timeout for mode change
+export KEYTIMEOUT=1
 
 # Alias definitions directory. Source all the files there
 if [ -d ~/.sourced ]; then
@@ -29,9 +61,3 @@ fi
 
 # ls and path completion colors
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-
-# switch off all annoying -i flags
-alias cp='nocorrect cp'
-alias ln='nocorrect ln'
-alias mv='nocorrect mv'
-alias rm='nocorrect rm'
