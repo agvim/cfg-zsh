@@ -46,7 +46,8 @@ zle-keymap-select() {
 }
 # fix for when ctrl+c is issued
 function TRAPINT() {
-    zle-line-finish
+    vi_mode=""
+    zle -R
     precmd
     return $(( 128 + $1 ))
 }
