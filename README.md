@@ -18,5 +18,5 @@ This configuration uses prezto zsh as a base with the following modifications:
 
 ![solarized xfce4 terminal with zsh prompt][example]
 
-[example]: https://github.com/agvim/cfg-zsh/tree/master/screenshots/zsh_solarized_xfce4-terminal.png "solarized xfce4 terminal with zsh prompt"
+[example]: https://raw.githubusercontent.com/agvim/cfg-zsh/master/screenshots/zsh_solarized_xfce4-terminal.png "solarized xfce4 terminal with zsh prompt"
 
