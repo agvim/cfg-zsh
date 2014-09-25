@@ -30,15 +30,15 @@ LEFT_SEP=''
 LEFT_SEP_ALT=''
 CHECKMARK='✔'
 CROSS='✘'
-PROMPT='%{$BASE02BG%}%(?.%{$GREEN%}$CHECKMARK.%{$RED%}$CROSS)%{$RESET$BASE02BG%} ${vi_mode}%{$BASE02BG%} %{$CYAN%}%n%{$RESET$BASE02BG%}@%{$VIOLET%}%m%{$RESET$BASE02BG%} $LEFT_SEP_ALT %{$BLUE%}%~%E%{$RESET%}
+PROMPT='%{$BASE02BG$BASE3%}%(?.%{$GREENBG%} $CHECKMARK%{$GREEN%}.%{$REDBG%} $CROSS%{$RED%}) ${vi_mode}%{$BASE02BG%} %{$CYAN%}%n%{$BASE0%}@%{$VIOLET%}%m%{$BASE0%} %{$BLUEBG$BASE02%}$LEFT_SEP %{$BASE3%}%~ %{$BLUE$BASE02BG%}$LEFT_SEP%E%{$RESET%}
 %(!.%{$RED%}#.%{$ORANGE%}\$)%{$RESET%} '
 # prepending a space since then the previous background color is preserved
-vi_ins_mode="%{$YELLOWBG$BASE02%}$LEFT_SEP%{$BASE3$BOLD%} INSERT %{$BASE02BG$YELLOW%}$LEFT_SEP%{$RESET%}"
-vi_cmd_mode="%{$BASE1BG$BASE02%}$LEFT_SEP%{$BASE3$BOLD%} NORMAL %{$BASE02BG$BASE1%}$LEFT_SEP%{$RESET%}"
+vi_ins_mode="%{$YELLOWBG%}$LEFT_SEP%{$BASE3$BOLD%} INSERT %{$RESET$BASE02BG$YELLOW%}$LEFT_SEP"
+vi_cmd_mode="%{$BASE1BG%}$LEFT_SEP%{$BASE3$BOLD%} NORMAL %{$RESET$BASE02BG$BASE1%}$LEFT_SEP"
 # vim mode is cleaned up when issuing a command
 # and a redraw is forced so it is only shown in the latest prompt
 zle-line-finish() {
-    vi_mode="$LEFT_SEP_ALT"
+    vi_mode="%{$BASE02BG%}$LEFT_SEP"
     zle reset-prompt
 }
 # by default we are in insert mode
