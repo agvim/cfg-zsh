@@ -25,23 +25,19 @@ setopt prompt_subst
 # <last command status> <vi_mode> <username>@<host> <cwd>
 # $
 
-# symbols for prompt
-LEFT_SEP=''
-LEFT_SEP_ALT=''
-CHECKMARK='✔'
-CROSS='✘'
-PROMPT='%{$BASE02BG$BASE3%}%(?.%{$GREENBG%} $CHECKMARK%{$GREEN%}.%{$REDBG%} $CROSS%{$RED%}) ${vi_mode}%{$BASE02BG%} %{$CYAN%}%n%{$BASE0%}@%{$VIOLET%}%m%{$BASE0%} %{$BLUEBG$BASE02%}$LEFT_SEP %{$BASE3%}%~ %{$BLUE$BASE02BG%}$LEFT_SEP%E%{$RESET%}
+PROMPT='%{$BASE02BG$BASE3%}%(?.%{$GREENBG%} $CHECKMARK%{$GREEN%}.%{$REDBG%} $CROSS%{$RED%}) ${vi_mode}$LEFT_SEP%{$BASE02BG%} %{$CYAN%}%n%{$BASE0%}@%{$VIOLET%}%m%{$BASE0%} %{$BLUEBG$BASE02%}$LEFT_SEP %{$BASE3%}%~ %{$BLUE$BASE02BG%}$LEFT_SEP%E%{$RESET%}
 %(!.%{$RED%}#.%{$ORANGE%}\$)%{$RESET%} '
 # prepending a space since then the previous background color is preserved
-vi_ins_mode="%{$YELLOWBG%}$LEFT_SEP%{$BASE3$BOLD%} INSERT %{$RESET$BASE02BG$YELLOW%}$LEFT_SEP"
-vi_cmd_mode="%{$BASE1BG%}$LEFT_SEP%{$BASE3$BOLD%} NORMAL %{$RESET$BASE02BG$BASE1%}$LEFT_SEP"
+vi_ins_mode="%{$YELLOWBG%}$LEFT_SEP%{$BASE3$BOLD%} INSERT %{$RESET$BASE02BG$YELLOW%}"
+vi_cmd_mode="%{$BASE1BG%}$LEFT_SEP%{$BASE3$BOLD%} NORMAL %{$RESET$BASE02BG$BASE1%}"
+vi_no_mode="%{$BASE02BG%}"
 # vim mode is cleaned up when issuing a command
 # and a redraw is forced so it is only shown in the latest prompt
 zle-line-finish() {
-    vi_mode="%{$BASE02BG%}$LEFT_SEP"
+    vi_mode=$vi_no_mode
     zle reset-prompt
 }
-# by default we are in insert mode
+# default is insert mode
 precmd() {
     vi_mode=$vi_ins_mode
 }
@@ -52,12 +48,16 @@ zle-keymap-select() {
 }
 # fix for when ctrl+c is issued
 function TRAPINT() {
-    vi_mode=""
-    zle -R
+    # remove mode indicator and redraw
+    vi_mode=$vi_no_mode
+    zle && zle reset-prompt
+    # set mode to ins for new prompt
     precmd
+    # return value as explained in zsh docs
     return $(( 128 + $1 ))
 }
 zle -N zle-keymap-select
+
 # timeout for mode change
 export KEYTIMEOUT=1
 
