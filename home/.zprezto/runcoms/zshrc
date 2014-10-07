@@ -45,6 +45,7 @@ precmd() {
 zle-keymap-select() {
     vi_mode=${${KEYMAP/vicmd/${vi_cmd_mode}}/(main|viins)/${vi_ins_mode}}
     zle reset-prompt
+    zle -R
 }
 # fix for when ctrl+c is issued
 function TRAPINT() {
