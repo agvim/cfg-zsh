@@ -39,6 +39,10 @@ zstyle ':prezto:load' pmodule \
 # Set the key mapping style to 'emacs' or 'vi'.
 zstyle ':prezto:module:editor' key-bindings 'vi'
 
+# Decrease mode switch delay and bind escape key to avoid key getting swallowed
+export KEYTIMEOUT=1
+bindkey -sM vicmd '^[' '^G'
+
 # Auto convert .... to ../..
 # zstyle ':prezto:module:editor' dot-expansion 'yes'
 
