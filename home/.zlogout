@@ -1,10 +1,6 @@
 #
 # Executes commands at logout.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
+# do not source prezto logut since it prints unwanted shit
 # when leaving the console clear the screen to increase privacy
 
 if [ "$SHLVL" = 1 ]; then

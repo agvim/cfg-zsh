@@ -1,9 +1,5 @@
-#
-# Sets Prezto options.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+# Modified configuration, check ~/.zprezto/runcoms/zpreztorc and the available
+# modules documentation in ~/.zprezto/modules/ to fine tune it
 
 #
 # General
@@ -118,7 +114,6 @@ zstyle ':prezto:module:history-substring-search:color' not-found 'fg=black,bg=re
 #
 
 # Set syntax highlighters.
-# By default, only the main highlighter is enabled.
 zstyle ':prezto:module:syntax-highlighting' highlighters \
   'main' \
   'brackets' # \
