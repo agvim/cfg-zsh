@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # clone prezto
-git clone --recursive -b master https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+git clone --depth 1 --recursive -b master https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
 # do not simlink files, the castle ones source the appropriate prezto files
 
