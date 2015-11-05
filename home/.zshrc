@@ -15,13 +15,11 @@ setopt prompt_subst
 # prompt using our defined colors
 # <last command status> <vi_mode> <username>@<host> <cwd>
 # $
-
-PROMPT='%{$BASE02BG$BASE3%}%(?.%{$GREENBG%} $CHECKMARK%{$GREEN%}.%{$REDBG%} $CROSS%{$RED%}) ${vi_mode}$LEFT_SEP%{$BASE02BG%} %{$CYAN%}%n%{$BASE0%}@%{$VIOLET%}%m%{$BASE0%} %{$BLUEBG$BASE02%}$LEFT_SEP %{$BASE3%}%~ %{$BLUE$BASE02BG%}$LEFT_SEP%E%{$RESET%}
+PROMPT='%{$BACKHLBG$BASE3%}%(?.%{$GREENBG%} $CHECKMARK %{$GREEN%}.%{$REDBG%} $CROSS %{$RED%})${vi_mode}%(!.%{$ORANGEBG%}.%{$BASE00BG%})$LEFT_SEP%{$BASE3%} %n@%m %(!.%{$ORANGE%}.%{$BASE00%})%{$BACKHLBG%}$LEFT_SEP%{$SECONDARY%} %~ %E%{$RESET%}
 %(!.%{$RED%}#.%{$ORANGE%}\$)%{$RESET%} '
-# prepending a space since then the previous background color is preserved
-vi_ins_mode="%{$YELLOWBG%}$LEFT_SEP%{$BASE3$BOLD%} INSERT %{$RESET$BASE02BG$YELLOW%}"
-vi_cmd_mode="%{$BASE1BG%}$LEFT_SEP%{$BASE3$BOLD%} NORMAL %{$RESET$BASE02BG$BASE1%}"
-vi_no_mode="%{$BASE02BG%}"
+vi_ins_mode="%{$YELLOWBG%}$LEFT_SEP%{$BASE3$BOLD%} INSERT %{$RESET$YELLOW%}"
+vi_cmd_mode="%{$EMPHASISBG%}$LEFT_SEP%{$BASE3$BOLD%} NORMAL %{$RESET$EMPHASIS%}"
+vi_no_mode=""
 # vim mode is cleaned up when issuing a command
 # and a redraw is forced so it is only shown in the latest prompt
 zle-line-finish() {
