@@ -15,9 +15,3 @@ This configuration uses prezto zsh as a base with the following modifications:
 - deactivated some prezto modules I do not use
 - powerline symbols in the prompt
 
-# screenshots
-
-![solarized xfce4 terminal with zsh prompt][example]
-
-[example]: https://raw.githubusercontent.com/agvim/cfg-zsh/master/screenshots/zsh_solarized_xfce4-terminal.png "solarized xfce4 terminal with zsh prompt"
-

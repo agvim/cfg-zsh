@@ -15,7 +15,7 @@ setopt prompt_subst
 # prompt using our defined colors
 # <last command status> <vi_mode> <username>@<host> <cwd>
 # $
-PROMPT='%{$BACKHLBG$BASE3%}%(?.%{$GREENBG%} $CHECKMARK %{$GREEN%}.%{$REDBG%} $CROSS %{$RED%})${vi_mode}%(!.%{$ORANGEBG%}.%{$BASE00BG%})$LEFT_SEP%{$BASE3%} %n@%m %(!.%{$ORANGE%}.%{$BASE00%})%{$BACKHLBG%}$LEFT_SEP%{$SECONDARY%} %~ %E%{$RESET%}
+PROMPT='%{$BACKHLBG$BASE3%}%(?.%{$GREENBG%} $CHECKMARK %{$GREEN%}.%{$REDBG%} $CROSS %{$RED%})${vi_mode}${MODESTATUS}%(!.%{$ORANGEBG%}.%{$BASE00BG%})$LEFT_SEP%{$BASE3%} %n@%m %(!.%{$ORANGE%}.%{$BASE00%})%{$BACKHLBG%}$LEFT_SEP%{$SECONDARY%} %~ %E%{$RESET%}
 %(!.%{$RED%}#.%{$ORANGE%}\$)%{$RESET%} '
 vi_ins_mode="%{$YELLOWBG%}$LEFT_SEP%{$BASE3$BOLD%} INSERT %{$RESET$YELLOW%}"
 vi_cmd_mode="%{$EMPHASISBG%}$LEFT_SEP%{$BASE3$BOLD%} NORMAL %{$RESET$EMPHASIS%}"
@@ -29,6 +29,7 @@ zle-line-finish() {
 # default is insert mode
 precmd() {
     vi_mode=$vi_ins_mode
+    MODESTATUS=$(if [[ -n $SHELL_ENVIRONMENT ]]; then echo "%{$MAGENTABG%}$LEFT_SEP%{$BASE3$BOLD%} $SHELL_ENVIRONMENT %{$MAGENTA%}"; fi)
 }
 # update status display when switching mode
 zle-keymap-select() {
