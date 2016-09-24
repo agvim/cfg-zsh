@@ -29,7 +29,7 @@ zle-line-finish() {
 # default is insert mode
 precmd() {
     vi_mode=$vi_ins_mode
-    MODESTATUS=$(if [[ -n $SHELL_ENVIRONMENT ]]; then echo "%{$MAGENTABG%}$LEFT_SEP%{$BASE3$BOLD%} $SHELL_ENVIRONMENT %{$MAGENTA%}"; fi)
+    MODESTATUS=$(if [[ -n $SHELL_ENVIRONMENT ]]; then echo "%{$MAGENTABG%}$LEFT_SEP%{$BASE3$BOLD%} $SHELL_ENVIRONMENT %{$RESET$MAGENTA%}"; fi)
 }
 # update status display when switching mode
 zle-keymap-select() {
