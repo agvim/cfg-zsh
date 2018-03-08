@@ -20,12 +20,12 @@ PROMPT='%{$BACKHLBG$BASE3%}%(?.%{$GREENBG%} $CHECKMARK %{$GREEN%}.%{$REDBG%} $CR
 vi_ins_mode="%{$YELLOWBG%}$LEFT_SEP%{$BASE3$BOLD%} INSERT %{$RESET$YELLOW%}"
 vi_cmd_mode="%{$EMPHASISBG%}$LEFT_SEP%{$BASE3$BOLD%} NORMAL %{$RESET$EMPHASIS%}"
 vi_no_mode=""
-# vim mode is cleaned up when issuing a command
-# and a redraw is forced so it is only shown in the latest prompt
-zle-line-finish() {
-    vi_mode=$vi_no_mode
-    zle reset-prompt
-}
+# # vim mode is cleaned up when issuing a command
+# # and a redraw is forced so it is only shown in the latest prompt
+# zle-line-finish() {
+#     vi_mode=$vi_no_mode
+#     zle reset-prompt
+# }
 # default is insert mode
 precmd() {
     vi_mode=$vi_ins_mode
