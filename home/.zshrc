@@ -15,7 +15,7 @@ setopt prompt_subst
 # prompt using our defined colors
 # <last command status> <vi_mode> <username>@<host> <cwd>
 # $
-PROMPT='%{$BACKHLBG$BASE3%}%(?.%{$GREENBG%} $CHECKMARK %{$GREEN%}.%{$REDBG%} $CROSS %{$RED%})${vi_mode}${MODESTATUS}%(!.%{$ORANGEBG%}.%{$BASE00BG%})$LEFT_SEP%{$BASE3%} %n@%m %(!.%{$ORANGE%}.%{$BASE00%})%{$BACKHLBG%}$LEFT_SEP%{$SECONDARY%} %~ %E%{$RESET%}
+PROMPT='%{$BACKHLBG$BASE3%}%(?.%{$GREENBG%} $CHECKMARK %{$GREEN%}.%{$REDBG%} $CROSS:%? %{$RED%})${vi_mode}${MODESTATUS}%(!.%{$ORANGEBG%}.%{$BASE00BG%})$LEFT_SEP%{$BASE3%} %n@%m %(!.%{$ORANGE%}.%{$BASE00%})%{$BACKHLBG%}$LEFT_SEP%{$SECONDARY%} %~ $LEFT_SEP_ALT %E%{$RESET%}
 %(!.%{$RED%}#.%{$ORANGE%}\$)%{$RESET%} '
 vi_ins_mode="%{$YELLOWBG%}$LEFT_SEP%{$BASE3$BOLD%} INSERT %{$RESET$YELLOW%}"
 vi_cmd_mode="%{$EMPHASISBG%}$LEFT_SEP%{$BASE3$BOLD%} NORMAL %{$RESET$EMPHASIS%}"
