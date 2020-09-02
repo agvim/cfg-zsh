@@ -12,6 +12,21 @@ fi
 # use variable expansion in prompt
 setopt prompt_subst
 
+# define symbols
+if [ "$POWERLINED" -eq 1 ]; then
+    LEFT_SEP=''
+    LEFT_SEP_ALT=''
+    RIGHT_SEP=''
+    RIGHT_SEP_ALT=''
+else
+    RIGHT_SEP_ALT='│'
+    LEFT_SEP_ALT='│'
+fi
+
+# other symbols
+CHECKMARK='✔'
+CROSS='✘'
+
 # prompt using our defined colors
 # <last command status> <vi_mode> <username>@<host> <cwd>
 # $
