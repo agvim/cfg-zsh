@@ -12,17 +12,6 @@ fi
 # use variable expansion in prompt
 setopt prompt_subst
 
-# define symbols
-if [ "$POWERLINED" -eq 1 ]; then
-    LEFT_SEP=''
-    LEFT_SEP_ALT=''
-    RIGHT_SEP=''
-    RIGHT_SEP_ALT=''
-else
-    RIGHT_SEP_ALT='│'
-    LEFT_SEP_ALT='│'
-fi
-
 # other symbols
 CHECKMARK='✔'
 CROSS='✘'
@@ -30,10 +19,10 @@ CROSS='✘'
 # prompt using our defined colors
 # <last command status> <vi_mode> <username>@<host> <cwd>
 # $
-PROMPT='%{$BACKHLBG$BASE3%}%(?.%{$GREENBG%} $CHECKMARK %{$GREEN%}.%{$REDBG%} $CROSS:%? %{$RED%})${vi_mode}${MODESTATUS}%(!.%{$ORANGEBG%}.%{$BASE00BG%})$LEFT_SEP%{$BASE3%} %n@%m %(!.%{$ORANGE%}.%{$BASE00%})%{$BACKHLBG%}$LEFT_SEP%{$SECONDARY%} %~ $LEFT_SEP_ALT %E%{$RESET%}
+PROMPT='%{$BACKHLBG$INVERTEDPRIMARY%}%(?.%{$GREENBG%} $CHECKMARK %{$GREEN%}.%{$REDBG%} $CROSS:%? %{$RED%})${vi_mode}${MODESTATUS}%(!.%{$ORANGEBG%}.%{$INVERTEDBACKBG%})$LEFT_SEP%{$INVERTEDPRIMARY%} %n@%m %(!.%{$ORANGE%}.%{$INVERTEDBACK%})%{$BACKHLBG%}$LEFT_SEP%{$SECONDARY%} %~ $LEFT_SEP_ALT %E%{$RESET%}
 %(!.%{$RED%}#.%{$ORANGE%}\$)%{$RESET%} '
-vi_ins_mode="%{$YELLOWBG%}$LEFT_SEP%{$BASE3$BOLD%} INSERT %{$RESET$YELLOW%}"
-vi_cmd_mode="%{$EMPHASISBG%}$LEFT_SEP%{$BASE3$BOLD%} NORMAL %{$RESET$EMPHASIS%}"
+vi_ins_mode="%{$YELLOWBG%}$LEFT_SEP%{$INVERTEDPRIMARY$BOLD%} INSERT %{$RESET$YELLOW%}"
+vi_cmd_mode="%{$EMPHASISBG%}$LEFT_SEP%{$INVERTEDPRIMARY$BOLD%} NORMAL %{$RESET$EMPHASIS%}"
 vi_no_mode=""
 # # vim mode is cleaned up when issuing a command
 # # and a redraw is forced so it is only shown in the latest prompt
@@ -44,7 +33,7 @@ vi_no_mode=""
 # default is insert mode
 precmd() {
     vi_mode=$vi_ins_mode
-    MODESTATUS=$(if [[ -n $SHELL_ENVIRONMENT ]]; then echo "%{$MAGENTABG%}$LEFT_SEP%{$BASE3$BOLD%} $SHELL_ENVIRONMENT %{$RESET$MAGENTA%}"; fi)
+    MODESTATUS=$(if [[ -n $SHELL_ENVIRONMENT ]]; then echo "%{$MAGENTABG%}$LEFT_SEP%{$INVERTEDPRIMARY$BOLD%} $SHELL_ENVIRONMENT %{$RESET$MAGENTA%}"; fi)
 }
 # update status display when switching mode
 zle-keymap-select() {
