@@ -19,7 +19,7 @@ CROSS='✘'
 # prompt using our defined colors
 # <last command status> <vi_mode> <username>@<host> <cwd>
 # $
-PROMPT='%{$BACKHLBG$INVERTEDPRIMARY%}%(?.%{$GREENBG%} $CHECKMARK %{$GREEN%}.%{$REDBG%} $CROSS:%? %{$RED%})${vi_mode}${MODESTATUS}%(!.%{$ORANGEBG%}.%{$INVERTEDBACKBG%})$LEFT_SEP%{$INVERTEDPRIMARY%} %n@%m %(!.%{$ORANGE%}.%{$INVERTEDBACK%})%{$BACKHLBG%}$LEFT_SEP%{$SECONDARY%} %~ $LEFT_SEP_ALT %E%{$RESET%}
+PROMPT='%{$BACKHLBG$INVERTEDPRIMARY%}%(?.%{$GREENBG%} $CHECKMARK %{$GREEN%}.%{$REDBG%} $CROSS:%? %{$RED%})${vi_mode}${MODESTATUS}%(!.%{$ORANGEBG%}.%{$INVERTEDBACKBG%})$LEFT_SEP%{$INVERTEDPRIMARY%} %n@%m %(!.%{$ORANGE%}.%{$INVERTEDBACK%})%{$BACKHLBG%}$LEFT_SEP%{$PRIMARY%} %~ $LEFT_SEP_ALT %E%{$RESET%}
 %(!.%{$RED%}#.%{$ORANGE%}\$)%{$RESET%} '
 vi_ins_mode="%{$YELLOWBG%}$LEFT_SEP%{$INVERTEDPRIMARY$BOLD%} INSERT %{$RESET$YELLOW%}"
 vi_cmd_mode="%{$EMPHASISBG%}$LEFT_SEP%{$INVERTEDPRIMARY$BOLD%} NORMAL %{$RESET$EMPHASIS%}"
