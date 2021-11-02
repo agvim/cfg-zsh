@@ -22,7 +22,7 @@ CROSS='✘'
 PROMPT='%{$BACKHLBG$INVERTEDPRIMARY%}%(?.%{$GREENBG%} $CHECKMARK %{$GREEN%}.%{$REDBG%} $CROSS:%? %{$RED%})${vi_mode}${MODESTATUS}%(!.%{$ORANGEBG%}.%{$INVERTEDBACKBG%})$LEFT_SEP%{$INVERTEDPRIMARY%} %n@%m %(!.%{$ORANGE%}.%{$INVERTEDBACK%})%{$BACKHLBG%}$LEFT_SEP%{$PRIMARY%} %~ $LEFT_SEP_ALT %E%{$RESET%}
 %(!.%{$RED%}#.%{$ORANGE%}\$)%{$RESET%} '
 vi_ins_mode="%{$YELLOWBG%}$LEFT_SEP%{$INVERTEDPRIMARY$BOLD%} INSERT %{$RESET$YELLOW%}"
-vi_cmd_mode="%{$EMPHASISBG%}$LEFT_SEP%{$INVERTEDPRIMARY$BOLD%} NORMAL %{$RESET$EMPHASIS%}"
+vi_cmd_mode="%{$BLUEBG%}$LEFT_SEP%{$INVERTEDPRIMARY$BOLD%} NORMAL %{$RESET$BLUE%}"
 vi_no_mode=""
 # # vim mode is cleaned up when issuing a command
 # # and a redraw is forced so it is only shown in the latest prompt
