@@ -1,0 +1,13 @@
+# In zsh, use SHELL_ENVIRONMENT (for prompt printing) instead of the venv prompt override
+# note that it is not restored if the venv is deactivated
+if [[ -n "$ZSH_VERSION" ]]
+then
+    VIRTUAL_ENV_DISABLE_PROMPT=1
+    function zsh_python_precmd() {
+        if [[ -n $VIRTUAL_ENV ]]
+        then
+            SHELL_ENVIRONMENT="$(basename $VIRTUAL_ENV)"
+        fi
+    }
+    add-zsh-hook precmd zsh_python_precmd
+fi
