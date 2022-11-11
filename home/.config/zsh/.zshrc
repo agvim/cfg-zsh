@@ -1,5 +1,5 @@
 # Source prezto zshrc
-source ~/.zprezto/runcoms/zshrc
+source "$ZDOTDIR/.zprezto/runcoms/zshrc"
 
 # zsh-vi-mode plugin
 # source $HOME/.zsh-vi-mode/zsh-vi-mode.plugin.zsh
@@ -28,8 +28,8 @@ source ~/.zprezto/runcoms/zshrc
 
 # Colors; no need to autoload zsh colors
 # autoload -U colors && colors
-if [ -f ~/.bash/display ]; then
-    . ~/.bash/display
+if [ -f ~/.config/bash/display ]; then
+    . ~/.config/bash/display
 fi
 
 # use variable expansion in prompt
@@ -89,7 +89,7 @@ export KEYTIMEOUT=1
 
 # Alias definitions directory. Source all the files there
 if [ -d ~/.sourced ]; then
-    for F in ~/.sourced/*; do . $F; done
+    for F in ~/.config/shell_sourced/*; do . $F; done
 fi
 
 # ls and path completion colors

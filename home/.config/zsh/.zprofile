@@ -1,5 +1,5 @@
 # Source prezto settings
-source ~/.zprezto/runcoms/zprofile
+source "$ZDOTDIR/.zprezto/runcoms/zprofile"
 
 # Overwrite some of the settings
 

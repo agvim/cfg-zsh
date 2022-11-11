@@ -1,2 +1,2 @@
 #!/bin/bash
-cp -r $HOME/.zprezto $1/
+cp -r $HOME/.config/zsh/.zprezto $1/

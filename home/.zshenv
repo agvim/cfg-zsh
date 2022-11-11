@@ -1,5 +1,4 @@
-# Source prezto settings
-source ~/.zprezto/runcoms/zshenv
-
-# ubuntu option to skip compinit (done in the prezto completion module)
-skip_global_compinit=1
+# xdg config for zsh with zprezto
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:=$HOME/.config}"
+export ZDOTDIR="${ZDOTDIR:=$XDG_CONFIG_HOME/zsh}"
+source "$ZDOTDIR/.zshenv"

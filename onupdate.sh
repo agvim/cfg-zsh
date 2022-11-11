@@ -1,5 +1,5 @@
 #!/bin/bash
 # pull prezto
 currdir=`pwd`
-cd $HOME/.zprezto && git pull origin master
+cd $HOME/.config/zsh/.zprezto && git pull origin master
 cd $currdir
