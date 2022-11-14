@@ -1,0 +1,71 @@
+# Colors; no need to autoload zsh colors as we have this definitions for bash
+# autoload -U colors && colors
+if [ -f ~/.config/bash/display ]; then
+    . ~/.config/bash/display
+fi
+
+# Characters
+CHECKMARK='✔'
+CROSS='✘'
+
+# vi mode segments
+vi_ins_mode="%{$YELLOWBG%}$LEFT_SEP%{$INVERTEDPRIMARY$BOLD%} INSERT %{$RESET$YELLOW%}"
+vi_rep_mode="%{$ORANGEBG%}$LEFT_SEP%{$INVERTEDPRIMARY$BOLD%} REPLACE %{$RESET$ORANGE%}"
+vi_cmd_mode="%{$BLUEBG%}$LEFT_SEP%{$INVERTEDPRIMARY$BOLD%} NORMAL %{$RESET$BLUE%}"
+vi_vis_mode="%{$MAGENTABG%}$LEFT_SEP%{$INVERTEDPRIMARY$BOLD%} VISUAL %{$RESET$MAGENTA%}"
+vi_vline_mode="%{$MAGENTABG%}$LEFT_SEP%{$INVERTEDPRIMARY$BOLD%} V-LINE %{$RESET$MAGENTA%}"
+vi_no_mode=""
+
+prompt_agvim_precmd() {
+    #vi_mode=$vi_ins_mode
+    if [[ -n $SHELL_ENVIRONMENT ]]
+    then
+        MODESTATUS=$(echo "%{$MAGENTABG%}$LEFT_SEP%{$INVERTEDPRIMARY$BOLD%} $SHELL_ENVIRONMENT %{$RESET$MAGENTA%}")
+    fi
+}
+
+# Prompt components
+prompt_status() {
+    # print in  a red segment a cross with the return value of the last command if it was not zero
+    # otherwise a checkmark in a green segment
+    print -n '%{$BACKHLBG$INVERTEDPRIMARY%}%(?.%{$GREENBG%} $CHECKMARK %{$GREEN%}.%{$REDBG%} $CROSS:%? %{$RED%})'
+}
+
+prompt_context() {
+    # print the username@host in orange if root otherwise in normal color
+    print -n '%(!.%{$ORANGEBG%}.%{$INVERTEDBACKBG%})$LEFT_SEP%{$INVERTEDPRIMARY%} %n@%m %(!.%{$ORANGE%}.%{$INVERTEDBACK%})'
+}
+
+prompt_dir() {
+    print -n '%{$BACKHLBG%}$LEFT_SEP%{$PRIMARY%} %~ '
+}
+
+prompt_symbol() {
+    # the prompt symbol is an orange $ or a red # if root
+    print -n '%(!.%{$RED%}#.%{$ORANGE%}\$)%{$RESET%} '
+}
+
+prompt_agvim_setup() {
+    autoload -Uz add-zsh-hook
+
+    prompt_opts=(cr bang subst percent)
+
+    add-zsh-hook precmd prompt_agvim_precmd
+
+    # Tell prezto we can manage this prompt
+    zstyle ':prezto:module:prompt' managed 'yes'
+
+    # Set editor-info segments to show vim mode
+    zstyle ':prezto:module:editor:info:keymap:primary' format "$vi_ins_mode"
+    zstyle ':prezto:module:editor:info:keymap:primary:insert' format "$vi_ins_mode"
+    zstyle ':prezto:module:editor:info:keymap:primary:overwrite' format "$vi_rep_mode"
+    zstyle ':prezto:module:editor:info:keymap:alternate' format "$vi_cmd_mode"
+
+    # prompt using our defined colors
+    # <last command status> <vi_mode> <shell_environment> <username>@<host> <cwd>
+    # $
+    PROMPT=$(prompt_status)'${editor_info[keymap]}${MODESTATUS}'$(prompt_context)$(prompt_dir)'$LEFT_SEP_ALT %E%{$RESET%}
+'$(prompt_symbol)
+}
+
+prompt_agvim_setup "$@"

@@ -1,5 +1,5 @@
-# Modified configuration, check ~/.zprezto/runcoms/zpreztorc and the available
-# modules documentation in ~/.zprezto/modules/ to fine tune it
+# Modified configuration, check .zprezto/runcoms/zpreztorc and the available
+# modules documentation in .zprezto/modules/ to fine tune it
 
 #
 # General
@@ -32,7 +32,8 @@ zstyle ':prezto:load' pmodule \
   'directory' \
   'completion' \
   'syntax-highlighting' \
-  'history-substring-search'
+  'history-substring-search' \
+  'prompt'
 
 #
 # Autosuggestions
@@ -127,16 +128,16 @@ zstyle ':prezto:module:history-substring-search:color' not-found 'fg=black,bg=re
 # Set the prompt theme to load.
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
-# zstyle ':prezto:module:prompt' theme 'sorin'
+zstyle ':prezto:module:prompt' theme 'agvim'
 
 # Set the working directory prompt display length.
 # By default, it is set to 'short'. Set it to 'long' (without '~' expansion)
 # for longer or 'full' (with '~' expansion) for even longer prompt display.
-# zstyle ':prezto:module:prompt' pwd-length 'short'
+zstyle ':prezto:module:prompt' pwd-length 'long'
 
 # Set the prompt to display the return code along with an indicator for non-zero
 # return codes. This is not supported by all prompts.
-# zstyle ':prezto:module:prompt' show-return-val 'yes'
+zstyle ':prezto:module:prompt' show-return-val 'yes'
 
 #
 # Python
